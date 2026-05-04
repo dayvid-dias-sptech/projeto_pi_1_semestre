@@ -73,3 +73,25 @@ body {
 .btn:hover {
     background: #e55d00;
 }
+
+/* fim header */
+
+.secao {
+  min-height: 100vh; /*vh = 100% da altura da tela do usuário*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.secao1 {
+  background-image: url("../assets/imgs/overwatch-fundo.jpg");
+}
+
+.secao2 {
+  background-image: url("../assets/imgs/overwatch-fundo1.jpg");
+}
+
+.secao3 {
+  background-image: url("../assets/imgs/overwatch-fundo.jpg");
+}
+

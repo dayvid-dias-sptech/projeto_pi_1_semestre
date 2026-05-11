@@ -123,10 +123,10 @@
 
 /* Cadastro */
 
-.login {
+.cadastro {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/overwatch-fundo.jpg');
-  background-size: cover;
+background-color: #15171e;
+background-size: cover;
 }
 
 .login .container {
@@ -146,6 +146,7 @@
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
+  margin-top: 120px;
 }
 
 .card h2 {
@@ -235,7 +236,8 @@
   border-radius: 4px;
   border: #ED145B 3px solid;
   padding: 10px;
-  margin-right: 10%;
+  margin-right: 5%;
+  margin-top: 10%;
 }
 
 .card_erro #mensagem_erro{

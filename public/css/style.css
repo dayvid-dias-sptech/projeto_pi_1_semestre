@@ -19,6 +19,10 @@
   margin: auto;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .header {
     position: fixed;
     top: 23px;
@@ -73,6 +77,15 @@
 
 /* fim header */
 
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  text-align: center;
+}
+
 .secao {
   min-height: 100vh; /*vh = 100% da altura da tela do usuário*/
   background-size: cover;
@@ -87,6 +100,17 @@
   align-items: center; 
   justify-content: flex-start;
   padding-left: 80px;
+}
+
+.img-hero {
+  width: 600px;
+  height: 100px;
+}
+
+.titulo-hero{
+  color: white;
+  align-items: center;
+  font-weight: bold;
 }
 
 .btn-hero {
@@ -111,10 +135,61 @@
 
 .secao2 {
   background-image: url("../assets/imgs/overwatch-fundo1.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.conteudo-secao2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  width: 80%;
+  margin: auto;
+  color: white;
+}
+
+.texto-secao2 {
+  flex: 1;
+}
+
+.texto-secao2 h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.secao2 p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.texto-secao2 p {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.img-secao2 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.img-secao2 img {
+  width: 640px;
+  height: auto;
+  border-radius: 10px;
+   transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.img-secao2 img:hover {
+  transform: scale(1.2);
+  filter: brightness(1.1);
 }
 
 .secao3 {
-  background-image: url("../assets/imgs/overwatch-fundo.jpg");
+  background-image: url("../assets/imgs/genji.jpg");
 }
 
 

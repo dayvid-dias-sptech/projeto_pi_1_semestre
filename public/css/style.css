@@ -65,10 +65,15 @@ html {
     color: #009ae4;
 }
 
-.actions {
+.acao {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.acao a {
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .icon {
@@ -189,9 +194,16 @@ html {
 }
 
 .secao3 {
-  background-image: url("../assets/imgs/genji.jpg");
+  background-image: url("../assets/imgs/hanamura.jpg");
 }
 
+.secao4 {
+  background-image: url("../assets/imgs/rialto.jpg");
+}
+
+.secao5 {
+  background-image: url("../assets/imgs/chateau.jpg");
+}
 
 
 

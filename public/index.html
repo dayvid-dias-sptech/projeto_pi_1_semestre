@@ -60,8 +60,30 @@
 
       </div>
     </section>
-    <section id="info-mapas" class="secao secao3"></section>
-    <section id="info-hero" class="secao secao4"></section>
+    <section id="info-mapas" class="secao secao3">
+
+      <div class="carrossel-container">
+        <button id="prev" class="seta">&#10094;</button>
+
+        <div class="carrossel-slide">
+          <img src="../public/assets/imgs/blizzardworld.png" alt="Imagem 1">
+          <img src="../public/assets/imgs/busan.png" alt="Imagem 2">
+          <img src="../public/assets/imgs/chateau.jpg" alt="Imagem 3">
+          <img src="../public/assets/imgs/circuit-royal.png" alt="Imagem 4">
+          <img src="../public/assets/imgs/havana.png" alt="Imagem 5">
+          <img src="../public/assets/imgs/kanezaka.png" alt="Imagem 6">
+          <img src="../public/assets/imgs/new-queen-street.png" alt="Imagem 7">
+        </div>
+
+        <button id="next" class="seta">&#10095;</button>
+      </div>
+
+    </section>
+    <section id="info-hero" class="secao secao4">
+
+      
+      
+    </section>
     <section id="info-noticia" class="secao secao5"></section>
   </main>
 
@@ -74,3 +96,39 @@
 </body>
 
 </html>
+<script>
+  const slide = document.querySelector('.carrossel-slide');
+const imagens = document.querySelectorAll('.carrossel-slide img');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+
+let contador = 0;
+const totalImagens = imagens.length;
+
+function atualizarCarrossel() {
+    // Move o slide com base na largura da imagem e o número do índice
+    slide.style.transform = `translateX(${-contador * 100}%)`;
+}
+
+nextBtn.addEventListener('click', () => {
+    contador++;
+    if (contador >= totalImagens) {
+        contador = 0; // Volta para a primeira imagem
+    }
+    atualizarCarrossel();
+});
+
+prevBtn.addEventListener('click', () => {
+    contador--;
+    if (contador < 0) {
+        contador = totalImagens - 1; // Vai para a última imagem
+    }
+    atualizarCarrossel();
+});
+
+// Opcional: Carrossel automático passando a cada 3 segundos
+setInterval(() => {
+    contador = (contador + 1) % totalImagens;
+    atualizarCarrossel();
+}, 9000);
+</script>

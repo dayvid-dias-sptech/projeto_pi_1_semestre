@@ -139,7 +139,9 @@ html {
 }
 
 .secao2 {
-  background-image: url("../assets/imgs/overwatch-fundo1.jpg");
+  background:  linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  url("../assets/imgs/overwatch-fundo1.jpg");
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -68,26 +68,16 @@ function cadastrar(req, res) {
     // Faça as validações dos valores
     if (nomeHeroi == undefined) {
         res.status(400).send("Nome do Herói está undefined!");
-    } else if (arma == undefined) {
-        res.status(400).send("Arma do Herói está undefined!");
     } else if (vidaBase == undefined) {
         res.status(400).send("Vida Base do Herói está undefined!");
     } else if (danoBase == undefined) {
         res.status(400).send("Dano Base do Herói está undefined!");
-    } else if (defesaBase == undefined) {
-        res.status(400).send("Defesa Base do Herói está undefined!");
-    } else if (velocidadeBase == undefined) {
-        res.status(400).send("Velocidade do Herói está undefined!");
     } else if (tipoHeroi == undefined) {
         res.status(400).send("Tipo do Herói está undefined!");
-    } else if (historiaHeroi == undefined){
-        res.status(400).send("História do Herói está undefined!");
-    } else if (fotoHeroi == undefined){
-        res.status(400).send("Foto do Herói está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        heroiModel.cadastrar(nomeHeroi, arma, vidaBase, danoBase, defesaBase, velocidadeBase, tipoHeroi, historiaHeroi, fotoHeroi)
+        heroiModel.cadastrar(nomeHeroi, vidaBase, danoBase, tipoHeroi)
             .then(
                 function (resultado) {
                     res.json(resultado);

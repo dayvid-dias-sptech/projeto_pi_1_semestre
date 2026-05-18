@@ -3,7 +3,6 @@ var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
-    var nickname = req.body.nicknameServer;
     var senha = req.body.senhaServer;
 
     if (email == undefined) {
@@ -59,7 +58,6 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var nickname = req.body.nicknameServer;
-    var foto = req.body.fotoServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -70,12 +68,10 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (nickname == undefined) {
         res.status(400).send("Seu nickname está undefined!");
-    } else if (foto == undefined){
-        res.status(400).send("Sua foto está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, nickname, email, senha, foto)
+        usuarioModel.cadastrar(nome, nickname, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

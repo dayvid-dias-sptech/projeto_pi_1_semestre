@@ -33,7 +33,7 @@
 
     <div class="actions">
       <span class="icon">🔍</span>
-      <a href="cadastro.html" ><span class="icon">👤</span>Conta</a>
+      <a href="cadastro.html"><span class="icon">👤</span>Conta</a>
     </div>
   </header>
   <!--header fim-->
@@ -57,10 +57,6 @@
             <input id="nomeHeroi_input" type="text" placeholder="Nome do Herói" />
           </div>
           <div class="campo">
-            <span>Arma:</span>
-            <input id="arma_input" type="text" placeholder="Arma do Herói" />
-          </div>
-          <div class="campo">
             <span>Vida Base:</span>
             <input id="vidaBase_input" type="text" placeholder="Quantidade de vida base do Herói" />
           </div>
@@ -69,31 +65,15 @@
             <input id="danoBase_input" type="text" placeholder="Quantidade de dano base do Herói" />
           </div>
           <div class="campo">
-            <span>Defesa Base:</span>
-            <input id="defesaBase_input" type="text" placeholder="Quantidade de defesa Base do Herói" />
-          </div>
-          <div class="campo">
-            <span>Velocidade Base:</span>
-            <input id="velocidadeBase_input" type="text" placeholder="Digite a velocidade base do Herói" />
-          </div>
-          <div class="campo">
             <span>Tipo do herói:</span>
-                <select id="tipoHeroi_input">
-                    <option value="" disabled selected>Selecione uma classe</option>
-                    <option value="1">Tank</option>
-                    <option value="2">DPS</option>
-                    <option value="3">Suporte</option>
-                </select>
+            <select id="tipoHeroi_input">
+              <option value="" disabled selected>Selecione uma classe</option>
+              <option value="Suporte">Tank</option>
+              <option value="DPS">DPS</option>
+              <option value="Suporte">Suporte</option>
+            </select>
           </div>
-          <div class="campo">
-            <span>Foto do herói:</span>
-            <input id="foto_input" type="text" placeholder="Escolha a foto do Herói" />
-          </div>
-          <div class="campo">
-            <span>História do herói:</span>
-            <input id="historiaHeroi_input" type="text" placeholder="Digite a história do Herói" />
-          </div>
-          
+
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
@@ -128,27 +108,17 @@
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeHeroi = nomeHeroi_input.value
-    var arma = arma_input.value
     var vidaBase = vidaBase_input.value
     var danoBase = danoBase_input.value
-    var defesaBase = defesaBase_input.value
-    var velocidadeBase = velocidadeBase_input.value
     var tipoHeroi = tipoHeroi_input.value
-    var fotoHeroi = foto_input.value
-    var historiaHeroi = historiaHeroi_input.value
 
     // Verificando se há algum campo em branco
     if (
-        nomeHeroi == "" ||
-        arma == "" ||
-        vidaBase == "" ||
-        danoBase == "" ||
-        defesaBase == "" ||
-        velocidadeBase == "" ||
-        tipoHeroi == "" ||
-        historiaHeroi == "" ||
-        fotoHeroi == ""
-        ) {
+      nomeHeroi == "" ||
+      vidaBase == "" ||
+      danoBase == "" ||
+      tipoHeroi == ""
+    ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
@@ -182,14 +152,9 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeHeroiServer: nomeHeroi,
-        armaServer: arma,
         vidaBaseServer: vidaBase,
         danoBaseServer: danoBase,
-        defesaBaseServer: defesaBase,
-        velocidadeBaseServer: velocidadeBase,
-        tipoHeroiServer: tipoHeroi,
-        historiaHeroiServer: historiaHeroi,
-        fotoHeroiServer: fotoHeroi
+        tipoHeroiServer: tipoHeroi
       }),
     })
       .then(function (resposta) {

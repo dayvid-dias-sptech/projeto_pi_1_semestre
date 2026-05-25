@@ -8,8 +8,12 @@ router.post("/cadastrar", function (req, res) {
     heroiController.cadastrar(req, res);
 })
 
-// router.post("/autenticar", function (req, res) {
-//     heroiController.autenticar(req, res);
-// });
+router.get("/quantidade-por-tipo", function (req, res) {
+    heroiController.buscarQuantidadePorTipo(req, res);
+});
+
+router.get("/atributos", function (req, res) {
+    heroiController.buscarAtributosHerois(req, res);
+});
 
 module.exports = router;

@@ -11,17 +11,6 @@ function buscarHeroiMaisUtilizado(req, res) {
         });
 }
 
-function buscarPrecisaoPorHeroi(req, res) {
-    partidaModel.buscarPrecisaoPorHeroi()
-        .then(function (resultado) {
-            res.status(200).json(resultado);
-        })
-        .catch(function (erro) {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
 function buscarMediaEliminacoesPorHeroi(req, res) {
     partidaModel.buscarMediaEliminacoesPorHeroi()
         .then(function (resultado) {
@@ -124,7 +113,6 @@ function cadastrar(req, res) {
 
 module.exports = {
     buscarHeroiMaisUtilizado,
-    buscarPrecisaoPorHeroi,
     buscarMediaEliminacoesPorHeroi,
     buscarKdaPorHeroi,
     buscarKmaPorHeroi,

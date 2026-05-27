@@ -7,10 +7,6 @@ router.get("/heroi-mais-utilizado", function (req, res) {
     partidaController.buscarHeroiMaisUtilizado(req, res);
 });
 
-router.get("/precisao-por-heroi", function (req, res) {
-    partidaController.buscarPrecisaoPorHeroi(req, res);
-});
-
 router.get("/media-eliminacoes", function (req, res) {
     partidaController.buscarMediaEliminacoesPorHeroi(req, res);
 });

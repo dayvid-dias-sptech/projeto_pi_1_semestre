@@ -20,20 +20,26 @@
   <!--header inicio-->
   <header class="header">
     <div class="logo">
-      <a href="index.html" class="logo"><img src="assets/icon/overwatch-logo.png" alt="overwatch-logo"></a>
+      <a href="index.html" class="logo"><img src="assets/icon/overstats.png" alt="overwatch-logo"></a>
     </div>
 
     <nav class="menu">
-      <a href="#">Informações do jogo</a>
-      <a href="#">Heróis</a>
-      <a href="#">Temporada</a>
-      <a href="#">Notícias</a>
-      <a href="#">Comunidade</a>
+      <a href="index.html#info-jogo">Informações do jogo</a>
+      <a href="index.html#info-mapas">Mapas</a>
+      <a href="index.html#info-hero">Heróis</a>
+      <a href="cadastroHeroi.html" class="logado">Cadastro de Heróis</a>
     </nav>
 
-    <div class="actions">
-      <span class="icon">🔍</span>
-      <a href="cadastro.html"><span class="icon">👤</span>Conta</a>
+    <div class="acao">
+      <div class="dropdown">
+        <button class="dropbtn"><img class="user-logo" src="./assets/icon/user.png"> Conta</button>
+        <div class="dropdown-conteudo">
+          <a href="login.html">Login</a>
+          <a href="cadastro.html">Cadastrar-se</a>
+          <a href="cadastroPartida.html" class="logado">Partidas</a>
+          <a href="./dashboard/dashboard.html" class="logado">Dashboard</a>
+        </div>
+      </div>
     </div>
   </header>
   <!--header fim-->
@@ -54,25 +60,27 @@
                      -->
           <div class="campo">
             <span>Nome do Herói:</span>
-            <input id="nomeHeroi_input" type="text" placeholder="Nome do Herói" />
+            <input id="nomeHeroi_input" type="text" placeholder="Nome do Herói" oninput="verificar()" />
           </div>
           <div class="campo">
             <span>Vida Base:</span>
-            <input id="vidaBase_input" type="text" placeholder="Quantidade de vida base do Herói" />
+            <input id="vidaBase_input" type="number" placeholder="Quantidade de vida base do Herói" oninput="verificar()" />
           </div>
           <div class="campo">
             <span>Dano Base:</span>
-            <input id="danoBase_input" type="text" placeholder="Quantidade de dano base do Herói" />
+            <input id="danoBase_input" type="number" placeholder="Quantidade de dano base do Herói" oninput="verificar()" />
           </div>
           <div class="campo">
             <span>Tipo do herói:</span>
-            <select id="tipoHeroi_input">
+            <select id="tipoHeroi_input" onchange="verificar()">
               <option value="" disabled selected>Selecione uma classe</option>
-              <option value="Suporte">Tank</option>
+              <option value="Tank">Tank</option>
               <option value="DPS">DPS</option>
               <option value="Suporte">Suporte</option>
             </select>
           </div>
+
+          <div id="div_mensagem" class="mensagem-verificacao"></div>
 
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
@@ -85,19 +93,45 @@
     </div>
   </div>
 
-  <!--footer inicio-->
-  <!-- <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
-  </div> -->
-  <!--footer fim-->
 </body>
 
 </html>
 
 <script>
+
+function verificar() {
+    let nomeHeroi = nomeHeroi_input.value;
+    let vidaBase = Number(vidaBase_input.value);
+    let danoBase = Number(danoBase_input.value);
+    let tipoHeroi = tipoHeroi_input.value;
+
+    if (nomeHeroi == "" && vidaBase_input.value == "" && danoBase_input.value == "" && tipoHeroi == "") {
+      div_mensagem.innerHTML = "";
+      return false;
+    }
+
+    if (nomeHeroi.length < 2) {
+      div_mensagem.innerHTML = "Informe um nome de herói com pelo menos 2 caracteres.";
+      return false;
+    }
+
+    if (vidaBase <= 0 || vidaBase_input.value == "") {
+      div_mensagem.innerHTML = "A vida base precisa ser maior que zero.";
+      return false;
+    }
+
+    if (danoBase <= 0 || danoBase_input.value == "") {
+      div_mensagem.innerHTML = "O dano base precisa ser maior que zero.";
+      return false;
+    }
+
+    if (tipoHeroi == "") {
+      div_mensagem.innerHTML = "Selecione o tipo do herói.";
+      return false;
+    }
+
+    return true;
+}
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
@@ -130,18 +164,11 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
+    if (!verificar()) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Preencha os dados do herói corretamente.";
+      return false;
+    }
 
     // Enviando o valor da nova input
     fetch("/herois/cadastrar", {
@@ -166,10 +193,10 @@
           cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
-            "Herói cadastrado com sucesso! Redirecionando para tela de Login...";
+            "Herói cadastrado com sucesso! Redirecionando para dashboard";
 
           setTimeout(() => {
-            window.location = "login.html";
+            window.location = "../dashboard/dashboard.html";
           }, "2000");
 
           limparFormulario();
@@ -185,26 +212,6 @@
 
     return false;
   }
-
-  // Listando empresas cadastradas 
-  // function listar() {
-  //   fetch("/empresas/listar", {
-  //     method: "GET",
-  //   })
-  //     .then(function (resposta) {
-  //       resposta.json().then((empresas) => {
-  //         empresas.forEach((empresa) => {
-  //           listaEmpresasCadastradas.push(empresa);
-
-  //           console.log("listaEmpresasCadastradas")
-  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-  //         });
-  //       });
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-  // }
 
   function sumirMensagem() {
     cardErro.style.display = "none";

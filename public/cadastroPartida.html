@@ -17,22 +17,29 @@
 
 <body class="cadastro" onload="carregarHerois()">
     <header class="header">
-        <div class="logo">
-            <a href="index.html" class="logo"><img src="assets/icon/overwatch-logo.png" alt="overwatch-logo"></a>
-        </div>
+    <div class="logo">
+      <a href="index.html" class="logo"><img src="assets/icon/overstats.png" alt="overwatch-logo"></a>
+    </div>
 
-        <nav class="menu">
-            <a href="index.html#info-jogo">Informações do jogo</a>
-            <a href="index.html#info-hero">Heróis</a>
-            <a href="cadastroHeroi.html">Cadastro de Heróis</a>
-            <a href="cadastroPartida.html">Cadastro de Partidas</a>
-        </nav>
+    <nav class="menu">
+      <a href="index.html#info-jogo">Informações do jogo</a>
+      <a href="index.html#info-mapas">Mapas</a>
+      <a href="index.html#info-hero">Heróis</a>
+      <a href="cadastroHeroi.html" class="logado">Cadastro de Heróis</a>
+    </nav>
 
-        <div class="actions">
-            <span class="icon">🔍</span>
-            <a href="cadastro.html"><span class="icon">👤</span>Conta</a>
+    <div class="acao">
+      <div class="dropdown">
+        <button class="dropbtn"><img class="user-logo" src="./assets/icon/user.png"> Conta</button>
+        <div class="dropdown-conteudo">
+          <a href="login.html">Login</a>
+          <a href="cadastro.html">Cadastrar-se</a>
+          <a href="cadastroPartida.html" class="logado">Partidas</a>
+          <a href="./dashboard/dashboard.html" class="logado">Dashboard</a>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 
     <div class="login">
         <div class="alerta_erro">

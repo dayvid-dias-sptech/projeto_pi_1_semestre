@@ -10,7 +10,7 @@
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="./../css/style.css" />
     <script src="../js/sessao.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -28,28 +28,26 @@
 <body onload="validarSessao(), carregarGraficos()">
 
     <div class="janela">
+        <img class="foto-dashboard" src="../assets/imgs/overstats-logotipo.png" alt="OverStats">
+
         <div class="header-left">
-            <a href="../index.html"></a><h1>OverStats</h1></a>
+            <a class="logo-dashboard" href="../index.html">
+                <img src="../assets/icon/overstats.png" alt="OverStats">
+            </a>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
+            <div class="btn-nav">
+                <a href="../dashboard/dashboard.html">
+                    <h3>Gráficos</h3>
                 </a>
             </div>
 
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
             <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                <a href="../index.html">
+                    <h3>Home</h3>
                 </a>
             </div>
 
@@ -60,53 +58,42 @@
         </div>
 
         <div class="dash">
-            <div id="alerta">
-            </div>
 
             <div id="graficos">
-                <div class="graph">
-                    <h3>Quantidade de heróis por tipo</h3>
-                    <canvas id="graficoTipoHeroi"></canvas>
+                <div class="graph grafico-terco">
+                    <h3>Top 5 partidas por KDA</h3>
+                    <canvas id="graficoTop5PartidasKda"></canvas>
                 </div>
 
-                <div class="graph">
-                    <h3>Vida base e dano base por herói</h3>
-                    <canvas id="graficoAtributosHerois"></canvas>
-                </div>
-                <div class="graph">
-                    <h3>Herói mais utilizado</h3>
-                    <canvas id="graficoHeroiMaisUtilizado"></canvas>
-                </div>
-
-                <div class="graph">
-                    <h3>Precisão geral por herói</h3>
-                    <canvas id="graficoPrecisaoPorHeroi"></canvas>
-                </div>
-
-                <div class="graph">
-                    <h3>Média de eliminações por herói</h3>
-                    <canvas id="graficoMediaEliminacoes"></canvas>
-                </div>
-
-                <div class="graph">
+                <div class="graph grafico-terco">
                     <h3>KDA por herói</h3>
                     <canvas id="graficoKdaPorHeroi"></canvas>
                 </div>
 
-                <div class="graph">
+                <div class="graph grafico-terco">
+                    <h3>Herói mais utilizado</h3>
+                    <div class="destaque-heroi">
+                        <span id="nomeHeroiMaisUtilizado">Sem dados</span>
+                        <p>Herói tipo <span id="tipoHeroi"></span> com <span id="partidasRegistradas"></span> partidas
+                            registradas</p>
+                    </div>
+                </div>
+
+                <div class="graph grafico-duplo">
+                    <h3>Média de eliminações por herói</h3>
+                    <canvas id="graficoMediaEliminacoes"></canvas>
+                </div>
+
+                <div class="graph grafico-terco">
+                    <h3>% de acerto crítica por herói</h3>
+                    <canvas id="graficoPrecisaoCritica"></canvas>
+                </div>
+
+                <div class="graph grafico-duplo">
                     <h3>Kills, mortes e assistências por herói</h3>
                     <canvas id="graficoKmaPorHeroi"></canvas>
                 </div>
 
-                <div class="graph">
-                    <h3>Precisão crítica por herói</h3>
-                    <canvas id="graficoPrecisaoCritica"></canvas>
-                </div>
-
-                <div class="graph">
-                    <h3>Top 5 partidas por KDA</h3>
-                    <canvas id="graficoTop5PartidasKda"></canvas>
-                </div>
             </div>
         </div>
     </div>
@@ -118,120 +105,13 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
 
-    function plotarGraficoTipoHeroi(resposta) {
-        let labels = [];
-
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Quantidade de Heróis',
-                data: [],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
-                ]
-            }]
-        };
-
-        for (let i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-
-            labels.push(registro.tipoHeroi);
-            dados.datasets[0].data.push(registro.quantidade);
-        }
-
-        const config = {
-            type: 'doughnut',
-            data: dados
-        };
-
-        new Chart(
-            document.getElementById('graficoTipoHeroi'),
-            config
-        );
-    }
-
-
-    function obterDadosGraficoTipoHeroi() {
-        fetch('/herois/quantidade-por-tipo', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoTipoHeroi(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function plotarGraficoAtributosHerois(resposta) {
-        let labels = [];
-
-        let dados = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Vida Base',
-                    data: [],
-                    backgroundColor: 'rgb(75, 192, 192)'
-                },
-                {
-                    label: 'Dano Base',
-                    data: [],
-                    backgroundColor: 'rgb(255, 99, 132)'
-                }
-            ]
-        };
-
-        for (let i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-
-            labels.push(registro.nomeHeroi);
-            dados.datasets[0].data.push(registro.vidaBase);
-            dados.datasets[1].data.push(registro.danoBase);
-        }
-
-        const config = {
-            type: 'bar',
-            data: dados
-        };
-
-        new Chart(
-            document.getElementById('graficoAtributosHerois'),
-            config
-        );
-    }
-
-    function obterDadosGraficoAtributosHerois() {
-        fetch('/herois/atributos', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoAtributosHerois(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
     function obterDadosHeroiMaisUtilizado() {
         fetch('/partidas/heroi-mais-utilizado', { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    plotarGraficoHeroiMaisUtilizado(resposta);
+                    mostrarHeroiMaisUtilizado(resposta);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -241,24 +121,6 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
-
-    function obterDadosPrecisaoPorHeroi() {
-        fetch('/partidas/precisao-por-heroi', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoPrecisaoPorHeroi(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
     function obterDadosMediaEliminacoes() {
         fetch('/partidas/media-eliminacoes', { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -344,65 +206,25 @@
             });
     }
 
-    function plotarGraficoHeroiMaisUtilizado(resposta) {
-        let labels = [];
+    function mostrarHeroiMaisUtilizado(resposta) {
+        // console.log("HERÓI MAIS UTILIZADO:", resposta); teste para saber pq não retornava o tipoheroi       
+        if (resposta.length > 0) {
+            nomeHeroiMaisUtilizado.innerHTML = resposta[0].nomeHeroi;
+            partidasRegistradas.innerHTML = resposta[0].quantidadePartidas;
+            tipoHeroi.innerHTML = resposta[0].tipoHeroi
 
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Quantidade de partidas',
-                data: [],
-                backgroundColor: 'rgb(54, 162, 235)'
-            }]
-        };
-
-        for (let i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-
-            labels.push(registro.nomeHeroi);
-            dados.datasets[0].data.push(registro.quantidadePartidas);
+        } else {
+            nomeHeroiMaisUtilizado.innerHTML = "Sem dados";
+            partidasRegistradas.innerHTML = "0";
         }
-
-        const config = {
-            type: 'bar',
-            data: dados
-        };
-
-        new Chart(
-            document.getElementById('graficoHeroiMaisUtilizado'),
-            config
-        );
     }
 
-    function plotarGraficoPrecisaoPorHeroi(resposta) {
-        let labels = [];
-
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Precisão média (%)',
-                data: [],
-                backgroundColor: 'rgb(75, 192, 192)'
-            }]
-        };
-
-        for (let i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-
-            labels.push(registro.nomeHeroi);
-            dados.datasets[0].data.push(registro.mediaAcerto);
-        }
-
-        const config = {
-            type: 'bar',
-            data: dados
-        };
-
-        new Chart(
-            document.getElementById('graficoPrecisaoPorHeroi'),
-            config
-        );
-    }
+    const cores = {
+        principal: '#C99423',
+        secundaria: '#E3B062',
+        azul: '#112547',
+        vermelho: '#EF4444'
+    };
 
     function plotarGraficoMediaEliminacoes(resposta) {
         let labels = [];
@@ -412,7 +234,8 @@
             datasets: [{
                 label: 'Média de eliminações',
                 data: [],
-                backgroundColor: 'rgb(255, 159, 64)'
+                backgroundColor: cores.principal,
+                borderRadius: 2
             }]
         };
 
@@ -425,7 +248,42 @@
 
         const config = {
             type: 'bar',
-            data: dados
+            data: dados,
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#D8D8D8',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.05)'
+                        }
+                    },
+
+                    y: {
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                size: 15,
+                                weight: '700'
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
         };
 
         new Chart(
@@ -442,7 +300,8 @@
             datasets: [{
                 label: 'KDA médio',
                 data: [],
-                backgroundColor: 'rgb(153, 102, 255)'
+                backgroundColor: cores.secundaria,
+                borderRadius: 2
             }]
         };
 
@@ -455,7 +314,43 @@
 
         const config = {
             type: 'bar',
-            data: dados
+            data: dados,
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#D8D8D8',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.05)'
+                        }
+                    },
+
+                    y: {
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                size: 15,
+                                weight: '700'
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
         };
 
         new Chart(
@@ -473,17 +368,20 @@
                 {
                     label: 'Eliminações',
                     data: [],
-                    backgroundColor: 'rgb(75, 192, 192)'
+                    backgroundColor: cores.principal,
+                    borderRadius: 2
                 },
                 {
                     label: 'Mortes',
                     data: [],
-                    backgroundColor: 'rgb(255, 99, 132)'
+                    backgroundColor: cores.vermelho,
+                    borderRadius: 2
                 },
                 {
                     label: 'Assistências',
                     data: [],
-                    backgroundColor: 'rgb(255, 205, 86)'
+                    backgroundColor: cores.secundaria,
+                    borderRadius: 2
                 }
             ]
         };
@@ -499,7 +397,50 @@
 
         const config = {
             type: 'bar',
-            data: dados
+            data: dados,
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#D8D8D8',
+
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            },
+
+                            padding: 20
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#D8D8D8',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.05)'
+                        }
+                    },
+
+                    y: {
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                size: 15,
+                                weight: '700'
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
         };
 
         new Chart(
@@ -516,7 +457,8 @@
             datasets: [{
                 label: 'Precisão crítica média (%)',
                 data: [],
-                backgroundColor: 'rgb(255, 99, 132)'
+                backgroundColor: cores.principal,
+                borderRadius: 2
             }]
         };
 
@@ -529,7 +471,44 @@
 
         const config = {
             type: 'bar',
-            data: dados
+            data: dados,
+            options: {
+                maintainAspectRatio: false,
+
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#D8D8D8',
+                            font: {
+                                size: 14,
+                                weight: '600'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.05)'
+                        }
+                    },
+
+                    y: {
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                size: 15,
+                                weight: '700'
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
         };
 
         new Chart(
@@ -546,7 +525,8 @@
             datasets: [{
                 label: 'KDA da partida',
                 data: [],
-                backgroundColor: 'rgb(54, 162, 235)'
+                backgroundColor: cores.azul,
+                borderRadius: 2
             }]
         };
 
@@ -559,7 +539,33 @@
 
         const config = {
             type: 'bar',
-            data: dados
+            data: dados,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#D8D8D8',
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.05)'
+                        }
+                    },
+
+                    y: {
+                        ticks: {
+                            color: 'white',
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
         };
 
         new Chart(
@@ -569,10 +575,7 @@
     }
 
     function carregarGraficos() {
-        obterDadosGraficoTipoHeroi();
-        obterDadosGraficoAtributosHerois();
         obterDadosHeroiMaisUtilizado();
-        obterDadosPrecisaoPorHeroi();
         obterDadosMediaEliminacoes();
         obterDadosKdaPorHeroi();
         obterDadosKmaPorHeroi();

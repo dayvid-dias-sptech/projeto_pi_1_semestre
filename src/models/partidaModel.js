@@ -3,23 +3,11 @@ var database = require("../database/config")
 
 function buscarHeroiMaisUtilizado() {
     var instrucaoSql = `
-        SELECT h.nomeHeroi, COUNT(p.idPartida) AS quantidadePartidas
+        SELECT h.nomeHeroi, h.tipoHeroi, COUNT(p.idPartida) AS quantidadePartidas
         FROM partida p
         JOIN heroi h ON p.fkHeroi = h.idHeroi
-        GROUP BY h.idHeroi, h.nomeHeroi
-        ORDER BY quantidadePartidas DESC;
-    `;
-
-    return database.executar(instrucaoSql);
-}
-
-function buscarPrecisaoPorHeroi() {
-    var instrucaoSql = `
-        SELECT h.nomeHeroi, AVG(p.porcentagemAcerto) AS mediaAcerto
-        FROM partida p
-        JOIN heroi h ON p.fkHeroi = h.idHeroi
-        GROUP BY h.idHeroi, h.nomeHeroi
-        ORDER BY mediaAcerto DESC;
+        GROUP BY h.idHeroi, h.nomeHeroi, h.tipoHeroi
+        ORDER BY quantidadePartidas DESC LIMIT 1;
     `;
 
     return database.executar(instrucaoSql);
@@ -104,7 +92,6 @@ function cadastrar(fkHeroi, porcentagemAcerto, porcentagemCritico, eliminacoes, 
 
 module.exports = {
     buscarHeroiMaisUtilizado,
-    buscarPrecisaoPorHeroi,
     buscarMediaEliminacoesPorHeroi,
     buscarKdaPorHeroi,
     buscarKmaPorHeroi,

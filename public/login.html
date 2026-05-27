@@ -20,23 +20,29 @@
     <!--Header-->
 
     <header class="header">
-        <div class="logo">
-            <a href="index.html" class="logo"><img src="assets/icon/overwatch-logo.png" alt="overwatch-logo"></a>
-        </div>
+    <div class="logo">
+      <a href="index.html" class="logo"><img src="assets/icon/overstats.png" alt="overwatch-logo"></a>
+    </div>
 
-        <nav class="menu">
-            <a href="#">Informações do jogo</a>
-            <a href="#">Heróis</a>
-            <a href="#">Temporada</a>
-            <a href="#">Notícias</a>
-            <a href="#">Comunidade</a>
-        </nav>
+    <nav class="menu">
+      <a href="index.html#info-jogo">Informações do jogo</a>
+      <a href="index.html#info-mapas">Mapas</a>
+      <a href="index.html#info-hero">Heróis</a>
+      <a href="cadastroHeroi.html" class="logado">Cadastro de Heróis</a>
+    </nav>
 
-        <div class="actions">
-            <span class="icon">🔍</span>
-            <a href="cadastro.html"><span class="icon">👤</span>Conta</a>
+    <div class="acao">
+      <div class="dropdown">
+        <button class="dropbtn"><img class="user-logo" src="./assets/icon/user.png"> Conta</button>
+        <div class="dropdown-conteudo">
+          <a href="login.html">Login</a>
+          <a href="cadastro.html">Cadastrar-se</a>
+          <a href="cadastroPartida.html" class="logado">Partidas</a>
+          <a href="./dashboard/dashboard.html" class="logado">Dashboard</a>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 
 
     <div class="login">
@@ -58,10 +64,11 @@
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
                     <button class="botao" onclick="entrar()">Entrar</button>
+                    <p class="link-formulario">Ainda não possui conta? <a href="cadastro.html">Clique aqui</a></p>
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                    <img src="./assets/loading-overwatch.gif" id="loading-gif">
                 </div>
 
                 <div id="div_erros_login"></div>
@@ -126,11 +133,10 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.NICKNAME_USUARIO = json.nickname;
-                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                        window.location = "./dashboard/dashboard.html";
+                    }, 3000); // apenas para exibir o loading
 
                 });
 

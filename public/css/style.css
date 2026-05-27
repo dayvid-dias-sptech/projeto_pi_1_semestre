@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:...');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
 
 :root {
   --tamanho-header: 80px;
@@ -50,8 +54,8 @@ html {
 }
 
 .logo img {
-  width: 130px;
-  height: 80px;
+  width: 100px;
+  height: auto;
 }
 
 .menu {
@@ -132,10 +136,6 @@ html {
 .acao a {
   text-decoration: none;
   font-weight: bold;
-}
-
-.icon {
-  cursor: pointer;
 }
 
 /* fim header */
@@ -263,6 +263,37 @@ html {
   align-items: center;
 }
 
+.conteudo-secao3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.texto-secao3 {
+  flex: 1;
+  width: 500px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+.texto-secao3 h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.secao3 p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.texto-secao3 p {
+  font-size: 20px;
+  line-height: 1.5;
+  color: white;
+  width: 500px;
+  padding: 50px;
+}
+
 .carrossel-container {
   position: relative;
   max-width: 600px;
@@ -363,18 +394,13 @@ width: 320px;
 }
 
 
-.grupo-carrossel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
 .titulo {
   font-size: 42px;
+  display: flex;
   font-weight: bold;
   color: white;
   text-align: center;
+  justify-content: center;
 }
 
 
@@ -395,7 +421,7 @@ width: 320px;
 
 .cadastro {
   height: var(--tamanho-login);
-  background-color: #15171e;
+  background-color: #161618;
   background-size: cover;
 }
 
@@ -407,21 +433,23 @@ width: 320px;
 
 .card {
   width: 50%;
-  background-color: #e5e5e5;
+  background-color: #212124;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: #f2f4f7;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
   margin-top: 120px;
+  border: 2px solid #c95304;
 }
 
 .card h2 {
   margin: 0;
   font-size: 30px;
+  color: #c95304;
 }
 
 .formulario {
@@ -435,23 +463,39 @@ width: 320px;
 .formulario span {
   font-size: 15px;
   font-weight: 800;
+  color: #e3b062;
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
+  border: 2px solid #c95304;
+  background-color: #161618;
+  color: white;
   text-align: center;
   border-radius: 10px;
   margin: 0;
 }
 
 .formulario select {
-  border: 2px solid #32b9cd;
-  background-color: white;
-  color: gray;
+  border: 2px solid #c95304;
+  background-color: #161618;
+  color: white;
   height: 36px;
   text-align: center;
   border-radius: 10px;
   margin: 0;
+}
+
+.formulario input::placeholder {
+  color: #9f9f9f;
+}
+
+.mensagem-verificacao {
+  min-height: 18px;
+  margin-top: 6px;
+  color: #e3b062;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .campo {
@@ -469,21 +513,44 @@ width: 320px;
   font-weight: 600;
   font-size: 18px;
   color: #fff;
-  background-color: #ED145B;
+  background-color: #c95304;
   width: 120px;
   height: 30px;
   align-self: center;
   margin-top: 20px;
 }
 
+.botao:hover {
+  background-color: #e55d00;
+}
+
+.link-formulario {
+  margin-top: 15px;
+  color: #f2f4f7;
+  font-size: 14px;
+  text-align: center;
+}
+
+.link-formulario a {
+  color: #e3b062;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.link-formulario a:hover {
+  color: #c95304;
+}
+
 .loading-div {
   width: 50px;
+  margin: auto;
   display: none;
 }
 
 .loading-div img {
   height: 50px;
   width: 50px;
+  border-radius: 20px;
 }
 
 #div_erros_login {
@@ -499,12 +566,12 @@ width: 320px;
 
 .card_erro {
   display: none;
-  background-color: #fff;
-  color: black;
+  background-color: #212124;
+  color: white;
   width: 230px;
   position: fixed;
   border-radius: 4px;
-  border: #ED145B 3px solid;
+  border: #c95304 3px solid;
   padding: 10px;
   margin-right: 5%;
   margin-top: 10%;
@@ -515,45 +582,12 @@ width: 320px;
   font-size: 20px;
 }
 
-.formulario .tipo_campo {
-  font-size: 20px;
-  font-weight: 600 !important;
-}
-
-.formulario {
-  display: flex;
-  flex-direction: column;
-}
-
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
+  border: 2px solid #c95304;
+  background-color: #161618;
+  color: white;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
-}
-
-.btn {
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #ED145B;
-  width: 120px;
-  align-self: center;
-  margin-top: 5px;
-}
-
-.loading-div {
-  width: 50px;
-  margin: auto;
-  display: none;
-}
-
-.loading-div img {
-  height: 50px;
-  width: 50px;
 }

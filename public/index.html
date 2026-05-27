@@ -25,7 +25,7 @@
       <a href="#info-jogo">Informações do jogo</a>
       <a href="#info-mapas">Mapas</a>
       <a href="#info-hero">Heróis</a>
-      <a href="cadastroHeroi.html">Cadastro de Heróis</a>
+      <a href="cadastroHeroi.html" class="logado">Cadastro de Heróis</a>
     </nav>
 
     <div class="acao">
@@ -34,8 +34,8 @@
         <div class="dropdown-conteudo">
           <a href="login.html">Login</a>
           <a href="cadastro.html">Cadastrar-se</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="cadastroPartida.html" class="logado">Partidas</a>
+          <a href="./dashboard/dashboard.html" class="logado">Dashboard</a>
         </div>
       </div>
     </div>
@@ -55,9 +55,9 @@
         <div class="texto-secao2">
           <h1>Seja um herói, monte uma equipe e ganhe a luta!</h1>
           <p>
-            Overwatch é um jogo competitivo de ação em equipe gratuito, 
-            onde partidas 5v5 exigem estratégia, precisão e trabalho em equipe. 
-            Escolha entre mais de 30 heróis únicos e enfrente jogadores em batalhas 
+            Overwatch é um jogo competitivo de ação em equipe gratuito,
+            onde partidas 5v5 exigem estratégia, precisão e trabalho em equipe.
+            Escolha entre mais de 30 heróis únicos e enfrente jogadores em batalhas
             intensas ao redor do mundo.
           </p>
         </div>
@@ -620,6 +620,14 @@
       atualizarCarrossel();
     });
   }
+
+  const linksLogados = document.querySelectorAll(".logado")
+
+  if (sessionStorage.ID_USUARIO) {
+  linksLogados.forEach((link) => {
+    link.style.display = "block";
+  })
+}
 
   criarCarrossel('antes-mapas', 'prox-mapas', 'slide-mapas');
   criarCarrossel('antes-dps', 'prox-dps', 'slide-dps');

@@ -16,4 +16,8 @@ router.get("/atributos", function (req, res) {
     heroiController.buscarAtributosHerois(req, res);
 });
 
+router.post("/listar-por-usuario", function (req, res) {
+    heroiController.listarPorUsuario(req, res);
+});
+
 module.exports = router;

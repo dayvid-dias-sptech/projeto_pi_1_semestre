@@ -111,6 +111,7 @@
     var vidaBase = vidaBase_input.value
     var danoBase = danoBase_input.value
     var tipoHeroi = tipoHeroi_input.value
+    var fkUsuario = sessionStorage.ID_USUARIO;
 
     // Verificando se há algum campo em branco
     if (
@@ -152,6 +153,7 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeHeroiServer: nomeHeroi,
+        fkUsuarioServer: fkUsuario,
         vidaBaseServer: vidaBase,
         danoBaseServer: danoBase,
         tipoHeroiServer: tipoHeroi

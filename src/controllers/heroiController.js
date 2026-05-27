@@ -11,6 +11,7 @@ function cadastrar(req, res) {
     var tipoHeroi = req.body.tipoHeroiServer;
     var historiaHeroi = req.body.historiaHeroiServer;
     var fotoHeroi = req.body.fotoHeroiServer;
+    var fkUsuario = req.body.fkUsuarioServer;
 
     // Faça as validações dos valores
     if (nomeHeroi == undefined) {
@@ -21,10 +22,12 @@ function cadastrar(req, res) {
         res.status(400).send("Dano Base do Herói está undefined!");
     } else if (tipoHeroi == undefined) {
         res.status(400).send("Tipo do Herói está undefined!");
+    } else if (fkUsuario == undefined) {
+        res.status(400).send("Usuário do Herói está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        heroiModel.cadastrar(nomeHeroi, vidaBase, danoBase, tipoHeroi)
+        heroiModel.cadastrar(nomeHeroi, vidaBase, danoBase, tipoHeroi, fkUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -66,8 +69,29 @@ function buscarAtributosHerois(req, res) {
         });
 }
 
+function listarPorUsuario(req, res) {
+    var idUsuario = req.body.idUsuarioServer
+
+    if (idUsuario == undefined) {
+        res.status(400).send("ID do usuário está undefined!")
+    } else {
+        heroiModel.listarPorUsuario(idUsuario)
+            .then(
+                function (resultado) {
+                    res.status(200).json(resultado);
+                }
+            ).catch(function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao listar os heróis do usuário! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage)
+            })
+    }
+
+}
+
 module.exports = {
     cadastrar,
     buscarQuantidadePorTipo,
-    buscarAtributosHerois
+    buscarAtributosHerois,
+    listarPorUsuario
 }

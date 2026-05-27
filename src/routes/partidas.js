@@ -31,4 +31,8 @@ router.get("/top-5-partidas-kda", function (req, res) {
     partidaController.buscarTop5PartidasKda(req, res);
 });
 
+router.post("/cadastrar", function (req, res) {
+    partidaController.cadastrar(req, res);
+})
+
 module.exports = router 

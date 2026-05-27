@@ -93,7 +93,14 @@ function buscarPrecisaoCriticaPorHeroi() {
     return database.executar(instrucaoSql);
 }
 
+function cadastrar(fkHeroi, porcentagemAcerto, porcentagemCritico, eliminacoes, mortes, assistencias, resultadoPartida) {
+    var instrucaoSql = `
+        INSERT INTO partida (porcentagemAcerto, porcentagemCritico, eliminacoes, mortes, assistencias, resultadoPartida, fkHeroi) VALUES (${porcentagemAcerto}, ${porcentagemCritico}, ${eliminacoes}, ${mortes}, ${assistencias}, ${resultadoPartida}, ${fkHeroi});
+    `;
 
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     buscarHeroiMaisUtilizado,
@@ -102,5 +109,6 @@ module.exports = {
     buscarKdaPorHeroi,
     buscarKmaPorHeroi,
     buscarPrecisaoCriticaPorHeroi,
-    buscarTop5PartidasKda
+    buscarTop5PartidasKda,
+    cadastrar
 };

@@ -11,7 +11,7 @@
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="./css/style.css">
-  <link rel="icon" href="./assets/icon/overwatch-logo.png">
+  <link rel="icon" href="./assets/icon/OverStats-logo.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -25,12 +25,19 @@
       <a href="#info-jogo">Informações do jogo</a>
       <a href="#info-mapas">Mapas</a>
       <a href="#info-hero">Heróis</a>
-      <a href="#info-noticia">Notícias</a>
       <a href="cadastroHeroi.html">Cadastro de Heróis</a>
     </nav>
 
     <div class="acao">
-      <a href="cadastro.html"><span class="icon">👤</span>Conta</a>
+      <div class="dropdown">
+        <button class="dropbtn"><img class="user-logo" src="./assets/icon/user.png"> Conta</button>
+        <div class="dropdown-conteudo">
+          <a href="login.html">Login</a>
+          <a href="cadastro.html">Cadastrar-se</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -39,7 +46,7 @@
       <div class="conteudo">
         <img class="img-hero" src="./assets/imgs/OverStats-logotipo-colorido.png" alt="overwatch-logo">
         <h1 class="titulo-hero">ONDE AS LENDAS SÃO MEDIDAS</h1>
-        <button class="btn-hero">JOGAR AGORA</button>
+        <a href="./cadastro.html" class="btn-hero">JOGAR AGORA</a>
       </div>
     </section>
     <section id="info-jogo" class="secao secao2">
@@ -48,10 +55,10 @@
         <div class="texto-secao2">
           <h1>Seja um herói, monte uma equipe e ganhe a luta!</h1>
           <p>
-            Overwatch é um jogo de ação em equipe grátis para jogar que se passa em um futuro otimista,
-            no qual cada partida é um campo de batalha 5v5 definitivo. Jogue como uma lutadora da liberdade
-            viajante do tempo, um DJ do campo de batalha ou outro dos mais de 30 heróis únicos em suas lutas
-            ao redor do mundo.
+            Overwatch é um jogo competitivo de ação em equipe gratuito, 
+            onde partidas 5v5 exigem estratégia, precisão e trabalho em equipe. 
+            Escolha entre mais de 30 heróis únicos e enfrente jogadores em batalhas 
+            intensas ao redor do mundo.
           </p>
         </div>
         <div class="img-secao2">
@@ -62,29 +69,511 @@
     </section>
     <section id="info-mapas" class="secao secao3">
 
-      <div class="carrossel-container">
-        <button id="prev" class="seta">&#10094;</button>
+      <div id="grupo-carrossel">
 
-        <div class="carrossel-slide">
-          <img src="./assets/imgs/blizzardworld.png" alt="Imagem 1">
-          <img src="./assets/imgs/busan.png" alt="Imagem 2">
-          <img src="./assets/imgs/chateau.jpg" alt="Imagem 3">
-          <img src="./assets/imgs/circuit-royal.png" alt="Imagem 4">
-          <img src="./assets/imgs/havana.png" alt="Imagem 5">
-          <img src="./assets/imgs/kanezaka.png" alt="Imagem 6">
-          <img src="./assets/imgs/new-queen-street.png" alt="Imagem 7">
+        <div class="titulo titulo-mapa">
+          <p>Mapas</p>
         </div>
 
-        <button id="next" class="seta">&#10095;</button>
+
+        <div class="carrossel-container">
+          <button id="antes-mapas" class="seta seta-esquerda">&#10094;</button>
+
+          <div class="carrossel-slide" id="slide-mapas">
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/blizzardworld.png" alt="Blizzard World">
+              <div class="texto">
+                <p>Blizzard World</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/busan.png" alt="Busan">
+              <div class="texto">
+                <p>Busan</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/chateau.jpg" alt="chateau">
+              <div class="texto">
+                <p>Chateau</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/circuit-royal.png" alt="Imagem 4">
+              <div class="texto">
+                <p>Circuit Royal</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/havana.png" alt="Havana">
+              <div class="texto">
+                <p>havana</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/kanezaka.png" alt="Kanezaka">
+              <div class="texto">
+                <p>Kanezaka</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/new-queen-street.png" alt="Nova Queen Street">
+              <div class="texto">
+                <p>Nova Queen Street</p>
+              </div>
+            </div>
+          </div>
+
+          <button id="prox-mapas" class="seta seta-direita">&#10095;</button>
+        </div>
+      </div>
       </div>
 
     </section>
     <section id="info-hero" class="secao secao4">
 
-      
-      
+      <!-- primeiro carrossel -->
+
+      <div id="grupo-carrossel">
+
+        <div class="titulo titulo-heroi">
+          <p>DPS</p>
+        </div>
+
+
+        <div class="carrossel-container">
+          <button id="antes-dps" class="seta seta-esquerda">&#10094;</button>
+
+
+          <div class="carrossel-slide" id="slide-dps">
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/sierra-foto.png" alt="sierra">
+              <div class="texto">
+                <p>Sierra</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/anran-foto.png" alt="anran">
+              <div class="texto">
+                <p>Anran</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/ashe-foto.png" alt="ashe">
+              <div class="texto">
+                <p>Ashe</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/bastion-foto.png" alt="bastion">
+              <div class="texto">
+                <p>Bastion</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/cassidy-foto.png" alt="cassidy">
+              <div class="texto">
+                <p>Cassidy</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/echo-foto.png" alt="echo">
+              <div class="texto">
+                <p>Echo</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/emre-foto.png" alt="emre">
+              <div class="texto">
+                <p>Emre</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/freja-foto.png" alt="freja">
+              <div class="texto">
+                <p>Freja</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/genji-foto.png" alt="genji">
+              <div class="texto">
+                <p>Genji</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/hanzo-foto.png" alt="hanzo">
+              <div class="texto">
+                <p>Hanzo</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/junkrat-foto.png" alt="junkrat">
+              <div class="texto">
+                <p>Junkrat</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/mei-foto.png" alt="mei">
+              <div class="texto">
+                <p>Mei</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/pharah-foto.png" alt="pharah">
+              <div class="texto">
+                <p>Pharah</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/reaper-foto.png" alt="reaper">
+              <div class="texto">
+                <p>Reaper</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/sojourn-foto.png" alt="sojourn">
+              <div class="texto">
+                <p>Sojourn</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/soldado76-foto.png" alt="soldado-76">
+              <div class="texto">
+                <p>Soldado: 76</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/sombra-foto.png" alt="sombra">
+              <div class="texto">
+                <p>Sombra</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/symmetra-foto.png" alt="symmetra">
+              <div class="texto">
+                <p>Symmetra</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/torbjorn-foto.png" alt="torbjorn">
+              <div class="texto">
+                <p>Torbjörn</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/tracer-foto.png" alt="tracer">
+              <div class="texto">
+                <p>Tracer</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/vendetta-foto.png" alt="vendetta">
+              <div class="texto">
+                <p>Vendetta</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/venture-foto.png" alt="venture">
+              <div class="texto">
+                <p>Venture</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/widowmaker-foto.png" alt="widowmaker">
+              <div class="texto">
+                <p>Widowmaker</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <button id="prox-dps" class="seta seta-direita">&#10095;</button>
+        </div>
+      </div>
+
+
+
+
+      <!-- segundo carrossel -->
+
+
+
+      <div id="grupo-carrossel">
+
+        <div class="titulo titulo-tank">
+          <p>Tank</p>
+        </div>
+
+
+        <div class="carrossel-container">
+          <button id="antes-tank" class="seta seta-esquerda">&#10094;</button>
+
+          <div class="carrossel-slide" id="slide-tank">
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/ramattra-foto.png" alt="ramattra">
+              <div class="texto">
+                <p>Ramattra</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/dva-foto.png" alt="d.va">
+              <div class="texto">
+                <p>D.va</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/domina-foto.png" alt="domina">
+              <div class="texto">
+                <p>Domina</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/doomfist-foto.png" alt="doomfist">
+              <div class="texto">
+                <p>Doomfist</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/hazard-foto.png" alt="hazard">
+              <div class="texto">
+                <p>Hazard</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/mauga-foto.png" alt="mauga">
+              <div class="texto">
+                <p>Mauga</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/orisa-foto.png" alt="orisa">
+              <div class="texto">
+                <p>Orisa</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/rainhaJunker-foto.png" alt="rainha-junker">
+              <div class="texto">
+                <p>Rainha Junker</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/reinhardt-foto.png" alt="reinhardt">
+              <div class="texto">
+                <p>Reinhardt</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/roadhog-foto.png" alt="raodhog">
+              <div class="texto">
+                <p>Roadhog</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/sigma-foto.png" alt="sigma">
+              <div class="texto">
+                <p>Sigma</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/winston-foto.png" alt="winston">
+              <div class="texto">
+                <p>Winston</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/wrecking-ball-foto.png" alt="wrecking-ball">
+              <div class="texto">
+                <p>Wrecking Ball</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/zarya-foto.png" alt="zarya">
+              <div class="texto">
+                <p>Zarya</p>
+              </div>
+            </div>
+          </div>
+
+          <button id="prox-tank" class="seta seta-direita">&#10095;</button>
+        </div>
+      </div>
+
+
+
+
+      <!-- terceiro carrossel -->
+
+
+      <div id="grupo-carrossel">
+
+        <div class="titulo titulo-suporte">
+          <p>Suporte</p>
+        </div>
+
+
+        <div class="carrossel-container">
+          <button id="antes-suporte" class="seta seta-esquerda">&#10094;</button>
+
+          <div class="carrossel-slide" id="slide-suporte">
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/ana-foto.png" alt="ana">
+              <div class="texto">
+                <p>Ana</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/baptiste-foto.png" alt="baptiste">
+              <div class="texto">
+                <p>Baptiste</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/brigitte-foto.png" alt="brigitte">
+              <div class="texto">
+                <p>Brigitte</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/illari-foto.png" alt="illari">
+              <div class="texto">
+                <p>Illari</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/jetpack-cat-foto.png" alt="jetpack-cat">
+              <div class="texto">
+                <p>Jetpack Cat</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/juno-foto.png" alt="juno">
+              <div class="texto">
+                <p>Juno</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/kiriko-foto.png" alt="kiriko">
+              <div class="texto">
+                <p>Kiriko</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/lifeweaver-foto.png" alt="lifeweaver">
+              <div class="texto">
+                <p>Lifeweaver</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/lucio-foto.png" alt="lucio">
+              <div class="texto">
+                <p>Lúcio</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/roadhog-foto.png" alt="raodhog">
+              <div class="texto">
+                <p>Roadhog</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/mercy-foto.png" alt="mercy">
+              <div class="texto">
+                <p>Mercy</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/mizuki-foto.png" alt="mizuki">
+              <div class="texto">
+                <p>Mizuki</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/moira-foto.png" alt="moira">
+              <div class="texto">
+                <p>Moira</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/wuyang-foto.png" alt="wuyang">
+              <div class="texto">
+                <p>Wuyang</p>
+              </div>
+            </div>
+
+            <div class="cards-foto">
+              <img src="./assets/imgs/zenyatta-foto.png" alt="zenyatta">
+              <div class="texto">
+                <p>Zenyatta</p>
+              </div>
+            </div>
+
+          </div>
+
+          <button id="prox-suporte" class="seta seta-direita">&#10095;</button>
+        </div>
+      </div>
+
     </section>
-    <section id="info-noticia" class="secao secao5"></section>
   </main>
 
   <!-- <div class="footer">
@@ -97,38 +586,44 @@
 
 </html>
 <script>
-  const slide = document.querySelector('.carrossel-slide');
-const imagens = document.querySelectorAll('.carrossel-slide img');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
 
-let contador = 0;
-const totalImagens = imagens.length;
+  function criarCarrossel(idAntes, idProx, idSlide) {
+    const antesBtn = document.getElementById(idAntes);
+    const proxBtn = document.getElementById(idProx);
+    const slideContainer = document.getElementById(idSlide);
+    const slides = slideContainer.querySelectorAll('.cards-foto');
 
-function atualizarCarrossel() {
-    // Move o slide com base na largura da imagem e o número do índice
-    slide.style.transform = `translateX(${-contador * 100}%)`;
-}
+    let currentIndex = 0;
 
-nextBtn.addEventListener('click', () => {
-    contador++;
-    if (contador >= totalImagens) {
-        contador = 0; // Volta para a primeira imagem
+    function atualizarCarrossel() {
+      const larguraSlide = slideContainer.parentElement.clientWidth;
+      slideContainer.style.transform = `translateX(${-currentIndex * larguraSlide}px)`;
     }
-    atualizarCarrossel();
-});
 
-prevBtn.addEventListener('click', () => {
-    contador--;
-    if (contador < 0) {
-        contador = totalImagens - 1; // Vai para a última imagem
-    }
-    atualizarCarrossel();
-});
+    proxBtn.addEventListener('click', () => {
+      currentIndex++;
 
-// Opcional: Carrossel automático passando a cada 3 segundos
-setInterval(() => {
-    contador = (contador + 1) % totalImagens;
-    atualizarCarrossel();
-}, 9000);
+      if (currentIndex >= slides.length) {
+        currentIndex = 0;
+      }
+
+      atualizarCarrossel();
+    });
+
+    antesBtn.addEventListener('click', () => {
+      currentIndex--;
+
+      if (currentIndex < 0) {
+        currentIndex = slides.length - 1;
+      }
+
+      atualizarCarrossel();
+    });
+  }
+
+  criarCarrossel('antes-mapas', 'prox-mapas', 'slide-mapas');
+  criarCarrossel('antes-dps', 'prox-dps', 'slide-dps');
+  criarCarrossel('antes-tank', 'prox-tank', 'slide-tank');
+  criarCarrossel('antes-suporte', 'prox-suporte', 'slide-suporte');
+
 </script>

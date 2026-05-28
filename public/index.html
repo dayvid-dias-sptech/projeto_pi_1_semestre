@@ -601,45 +601,28 @@
 <script>
 
   function criarCarrossel(idAntes, idProx, idSlide) {
-    const antesBtn = document.getElementById(idAntes);
-    const proxBtn = document.getElementById(idProx);
-    const slideContainer = document.getElementById(idSlide);
-    const slides = slideContainer.querySelectorAll('.cards-foto');
+  const antesBtn = document.getElementById(idAntes);
+  const proxBtn = document.getElementById(idProx);
+  const slideContainer = document.getElementById(idSlide);
 
-    let currentIndex = 0;
+  const totalSlides = slideContainer.querySelectorAll('.cards-foto').length;
 
-    function atualizarCarrossel() {
-      const larguraSlide = slideContainer.parentElement.clientWidth;
-      slideContainer.style.transform = `translateX(${-currentIndex * larguraSlide}px)`;
-    }
+  let currentIndex = 0;
 
-    proxBtn.addEventListener('click', () => {
-      currentIndex++;
-
-      if (currentIndex >= slides.length) {
-        currentIndex = 0;
-      }
-
-      atualizarCarrossel();
-    });
-
-    antesBtn.addEventListener('click', () => {
-      currentIndex--;
-
-      if (currentIndex < 0) {
-        currentIndex = slides.length - 1;
-      }
-
-      atualizarCarrossel();
-    });
+  function atualizarCarrossel() {
+    const largura = slideContainer.parentElement.clientWidth;
+    slideContainer.style.transform =  `translateX(-${currentIndex * largura}px)`;
   }
 
-  const linksLogados = document.querySelectorAll(".logado")
+  proxBtn.onclick = function() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    atualizarCarrossel();
+  };
 
-  if (sessionStorage.ID_USUARIO) {
-  linksLogados.forEach((link) => {
-    link.style.display = "block";
-  })
+  antesBtn.onclick = function() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    atualizarCarrossel();
+  };
 }
 
   criarCarrossel('antes-mapas', 'prox-mapas', 'slide-mapas');

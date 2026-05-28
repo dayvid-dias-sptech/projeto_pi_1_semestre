@@ -121,7 +121,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  padding: 260px 28px 28px;
+  padding: 200px 28px 28px;
 }
 
 .graph {

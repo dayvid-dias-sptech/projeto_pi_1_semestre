@@ -105,6 +105,13 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
 
+    const cores = {
+        principal: '#C99423',
+        secundaria: '#E3B062',
+        azul: '#112547',
+        vermelho: '#EF4444'
+    };
+
     function obterDadosHeroiMaisUtilizado() {
         fetch('/partidas/heroi-mais-utilizado', { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -112,90 +119,6 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                     mostrarHeroiMaisUtilizado(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-    function obterDadosMediaEliminacoes() {
-        fetch('/partidas/media-eliminacoes', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoMediaEliminacoes(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function obterDadosKdaPorHeroi() {
-        fetch('/partidas/kda-por-heroi', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoKdaPorHeroi(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function obterDadosKmaPorHeroi() {
-        fetch('/partidas/kma-por-heroi', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoKmaPorHeroi(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function obterDadosPrecisaoCritica() {
-        fetch('/partidas/precisao-critica', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoPrecisaoCritica(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function obterDadosTop5PartidasKda() {
-        fetch('/partidas/top-5-partidas-kda', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGraficoTop5PartidasKda(resposta);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -219,12 +142,30 @@
         }
     }
 
-    const cores = {
-        principal: '#C99423',
-        secundaria: '#E3B062',
-        azul: '#112547',
-        vermelho: '#EF4444'
-    };
+
+
+
+
+
+
+
+    function obterDadosMediaEliminacoes() {
+        fetch('/partidas/media-eliminacoes', { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoMediaEliminacoes(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
 
     function plotarGraficoMediaEliminacoes(resposta) {
         let labels = [];
@@ -292,6 +233,34 @@
         );
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    function obterDadosKdaPorHeroi() {
+        fetch('/partidas/kda-por-heroi', { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoKdaPorHeroi(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
     function plotarGraficoKdaPorHeroi(resposta) {
         let labels = [];
 
@@ -357,6 +326,29 @@
             document.getElementById('graficoKdaPorHeroi'),
             config
         );
+    }
+
+
+
+
+
+
+
+    function obterDadosKmaPorHeroi() {
+        fetch('/partidas/kma-por-heroi', { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoKmaPorHeroi(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
     }
 
     function plotarGraficoKmaPorHeroi(resposta) {
@@ -449,6 +441,32 @@
         );
     }
 
+
+
+
+
+
+
+
+
+
+    function obterDadosPrecisaoCritica() {
+        fetch('/partidas/precisao-critica', { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoPrecisaoCritica(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
     function plotarGraficoPrecisaoCritica(resposta) {
         let labels = [];
 
@@ -516,6 +534,32 @@
             config
         );
     }
+
+
+
+
+
+
+
+
+    function obterDadosTop5PartidasKda() {
+        fetch('/partidas/top-5-partidas-kda', { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGraficoTop5PartidasKda(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+
 
     function plotarGraficoTop5PartidasKda(resposta) {
         let labels = [];

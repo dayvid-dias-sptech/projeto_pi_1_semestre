@@ -85,7 +85,7 @@
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
+          <img src="./assets/loading-overwatch.gif" id="loading-gif" />
         </div>
 
         <div id="div_erros_login"></div>
@@ -132,9 +132,6 @@ function verificar() {
 
     return true;
 }
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
 
   function cadastrar() {
     // aguardar();
@@ -216,4 +213,12 @@ function verificar() {
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
+
+    const linksLogados = document.querySelectorAll(".logado")
+
+  if (sessionStorage.ID_USUARIO) {
+  linksLogados.forEach((link) => {
+    link.style.display = "block";
+  })
+}
 </script>
